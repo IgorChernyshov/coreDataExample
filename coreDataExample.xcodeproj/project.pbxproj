@@ -12,6 +12,7 @@
 		CFE745962AD2A4D1007EF4EC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE745952AD2A4D1007EF4EC /* MainViewController.swift */; };
 		CFE7459B2AD2A4D2007EF4EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE7459A2AD2A4D2007EF4EC /* Assets.xcassets */; };
 		CFE7459E2AD2A4D2007EF4EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE7459C2AD2A4D2007EF4EC /* LaunchScreen.storyboard */; };
+		CFE745AA2AD2AD11007EF4EC /* String+RandomEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		CFE7459A2AD2A4D2007EF4EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFE7459D2AD2A4D2007EF4EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFE7459F2AD2A4D2007EF4EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandomEmoji.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 				CFE745912AD2A4D1007EF4EC /* AppDelegate.swift */,
 				CFE745932AD2A4D1007EF4EC /* SceneDelegate.swift */,
 				CFE745952AD2A4D1007EF4EC /* MainViewController.swift */,
+				CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */,
 				CFE7459A2AD2A4D2007EF4EC /* Assets.xcassets */,
 				CFE7459C2AD2A4D2007EF4EC /* LaunchScreen.storyboard */,
 				CFE7459F2AD2A4D2007EF4EC /* Info.plist */,
@@ -136,6 +139,7 @@
 			files = (
 				CFE745962AD2A4D1007EF4EC /* MainViewController.swift in Sources */,
 				CFE745922AD2A4D1007EF4EC /* AppDelegate.swift in Sources */,
+				CFE745AA2AD2AD11007EF4EC /* String+RandomEmoji.swift in Sources */,
 				CFE745942AD2A4D1007EF4EC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
