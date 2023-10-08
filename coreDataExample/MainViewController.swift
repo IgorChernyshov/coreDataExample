@@ -20,13 +20,14 @@ final class MainViewController: UIViewController {
 	}()
 
 	// MARK: - State
-	private var emojis = [String]()
+	private var emojis = [Emoji]()
 
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavigationBar()
 		setupSubviews()
+		loadData()
 	}
 
 	// MARK: - UI Configuration
@@ -50,10 +51,20 @@ final class MainViewController: UIViewController {
 		])
 	}
 
+	private func loadData() {
+		emojis = CoreDataManager.shared.readEmojis()
+		tableView.reloadData()
+	}
+
 	// MARK: - Tap Actions
 	@objc
 	private func plusButtonDidTap() {
-		emojis.append(.randomEmoji)
+		let emoji = CoreDataManager.shared.createEmoji()
+		emojis.append(emoji)
+		emojis.sort {
+			guard let firstDateCreated = $0.dateCreated, let secondDateCreated = $1.dateCreated else { return false }
+			return firstDateCreated > secondDateCreated
+		}
 		tableView.reloadData()
 	}
 }
@@ -68,7 +79,8 @@ extension MainViewController: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "CellReuseID", for: indexPath)
 
 		var contentConfiguration = cell.defaultContentConfiguration()
-		contentConfiguration.text = emojis[indexPath.row]
+		contentConfiguration.text = emojis[indexPath.row].content
+		contentConfiguration.secondaryText = emojis[indexPath.row].dateCreated?.formatted()
 		cell.contentConfiguration = contentConfiguration
 
 		return cell
@@ -78,6 +90,7 @@ extension MainViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		CoreDataManager.shared.deleteEmoji(emojis[indexPath.row])
 		emojis.remove(at: indexPath.row)
 		tableView.deleteRows(at: [indexPath], with: .fade)
 	}

@@ -13,6 +13,8 @@
 		CFE7459B2AD2A4D2007EF4EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFE7459A2AD2A4D2007EF4EC /* Assets.xcassets */; };
 		CFE7459E2AD2A4D2007EF4EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFE7459C2AD2A4D2007EF4EC /* LaunchScreen.storyboard */; };
 		CFE745AA2AD2AD11007EF4EC /* String+RandomEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */; };
+		CFE745AD2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFE745AB2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodeld */; };
+		CFE745B22AD2D570007EF4EC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE745B12AD2D570007EF4EC /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		CFE7459D2AD2A4D2007EF4EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFE7459F2AD2A4D2007EF4EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+RandomEmoji.swift"; sourceTree = "<group>"; };
+		CFE745AC2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		CFE745B12AD2D570007EF4EC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,12 +63,38 @@
 				CFE745912AD2A4D1007EF4EC /* AppDelegate.swift */,
 				CFE745932AD2A4D1007EF4EC /* SceneDelegate.swift */,
 				CFE745952AD2A4D1007EF4EC /* MainViewController.swift */,
-				CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */,
+				CFE745AE2AD2D4EF007EF4EC /* Model */,
+				CFE745B02AD2D55D007EF4EC /* Services */,
+				CFE745AF2AD2D4F4007EF4EC /* Extensions */,
 				CFE7459A2AD2A4D2007EF4EC /* Assets.xcassets */,
 				CFE7459C2AD2A4D2007EF4EC /* LaunchScreen.storyboard */,
 				CFE7459F2AD2A4D2007EF4EC /* Info.plist */,
 			);
 			path = coreDataExample;
+			sourceTree = "<group>";
+		};
+		CFE745AE2AD2D4EF007EF4EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CFE745AB2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CFE745AF2AD2D4F4007EF4EC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CFE745A92AD2AD11007EF4EC /* String+RandomEmoji.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CFE745B02AD2D55D007EF4EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CFE745B12AD2D570007EF4EC /* CoreDataManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,10 +167,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE745B22AD2D570007EF4EC /* CoreDataManager.swift in Sources */,
 				CFE745962AD2A4D1007EF4EC /* MainViewController.swift in Sources */,
 				CFE745922AD2A4D1007EF4EC /* AppDelegate.swift in Sources */,
 				CFE745AA2AD2AD11007EF4EC /* String+RandomEmoji.swift in Sources */,
 				CFE745942AD2A4D1007EF4EC /* SceneDelegate.swift in Sources */,
+				CFE745AD2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +385,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CFE745AB2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CFE745AC2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = CFE745AC2AD2D4EC007EF4EC /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CFE745862AD2A4D0007EF4EC /* Project object */;
 }
