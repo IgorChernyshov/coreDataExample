@@ -5,6 +5,7 @@
 //  Created by Игорь Чернышов on 08.10.2023.
 //
 
+import CoreData
 import UIKit
 
 final class MainViewController: UIViewController {
@@ -20,14 +21,20 @@ final class MainViewController: UIViewController {
 	}()
 
 	// MARK: - State
-	private var emojis = [Emoji]()
+	private lazy var fetchedResultsController: NSFetchedResultsController<Emoji> = {
+		let controller = CoreDataManager.shared.createFetchedResultsController()
+		controller.delegate = self
+		try? controller.performFetch()
+		return controller
+	}()
+
+	private var emojis: [Emoji] { fetchedResultsController.fetchedObjects ?? [] }
 
 	// MARK: - Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupNavigationBar()
 		setupSubviews()
-		loadData()
 	}
 
 	// MARK: - UI Configuration
@@ -51,21 +58,10 @@ final class MainViewController: UIViewController {
 		])
 	}
 
-	private func loadData() {
-		emojis = CoreDataManager.shared.readEmojis()
-		tableView.reloadData()
-	}
-
 	// MARK: - Tap Actions
 	@objc
 	private func plusButtonDidTap() {
-		let emoji = CoreDataManager.shared.createEmoji()
-		emojis.append(emoji)
-		emojis.sort {
-			guard let firstDateCreated = $0.dateCreated, let secondDateCreated = $1.dateCreated else { return false }
-			return firstDateCreated > secondDateCreated
-		}
-		tableView.reloadData()
+		CoreDataManager.shared.createEmoji()
 	}
 }
 
@@ -91,7 +87,35 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		CoreDataManager.shared.deleteEmoji(emojis[indexPath.row])
-		emojis.remove(at: indexPath.row)
-		tableView.deleteRows(at: [indexPath], with: .fade)
+	}
+}
+
+// MARK: - NSFetchedResultsControllerDelegate
+extension MainViewController: NSFetchedResultsControllerDelegate {
+	func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		tableView.beginUpdates()
+	}
+
+	func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+		switch type {
+		case .insert:
+			guard let newIndexPath else { return }
+			tableView.insertRows(at: [newIndexPath], with: .automatic)
+		case .delete:
+			guard let indexPath else { return }
+			tableView.deleteRows(at: [indexPath], with: .automatic)
+		case .move:
+			guard let indexPath, let newIndexPath else { return }
+			tableView.moveRow(at: indexPath, to: newIndexPath)
+		case .update:
+			guard let indexPath else { return }
+			tableView.reloadRows(at: [indexPath], with: .automatic)
+		@unknown default:
+			print("Unexpected change type")
+		}
+	}
+
+	func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+		tableView.endUpdates()
 	}
 }
