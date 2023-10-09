@@ -29,6 +29,11 @@ final class CoreDataManager {
 		save()
 	}
 
+	func updateEmoji(_ emoji: Emoji) {
+		emoji.content = .randomEmoji
+		save()
+	}
+
 	func deleteEmoji(_ emoji: Emoji) {
 		viewContext.delete(emoji)
 		save()

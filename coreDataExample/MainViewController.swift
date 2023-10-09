@@ -86,7 +86,13 @@ extension MainViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MainViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		CoreDataManager.shared.deleteEmoji(emojis[indexPath.row])
+		CoreDataManager.shared.updateEmoji(emojis[indexPath.row])
+	}
+
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			CoreDataManager.shared.deleteEmoji(emojis[indexPath.row])
+		}
 	}
 }
 
